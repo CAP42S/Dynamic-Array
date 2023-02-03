@@ -2,7 +2,6 @@
 class DynamicArray {
 
   constructor(defaultSize = 4) {
-    // Your code here
     this.capacity = defaultSize;
     this.length = 0;
     this.data = new Array(defaultSize);
@@ -10,17 +9,17 @@ class DynamicArray {
 
   read(index) {
 
-    // Your code here
     return this.data[index];
-
   }
 
   push(val) {
-
-    // Your code here
+    //preallocate more space when capacity is reached
     if(this.length === this.capacity) this.resize();
+
+
     if(this.data[this.length] === undefined) {
-      this.data[this.length] = val;
+      //check if first index is free
+      this.data[0] === undefined ? this.data[0] = val : this.data[this.length] = val;
       this.length += 1;
 
     } else {
@@ -33,7 +32,6 @@ class DynamicArray {
 
   pop() {
 
-    // Your code here
     if (this.length > 0 ) {
       const lastEl = this.data[this.length - 1];
       this.data[this.length -1] = undefined;
@@ -45,9 +43,10 @@ class DynamicArray {
 
   shift() {
 
-    // Your code here
     if(this.length > 0) {
       const firstEl = this.data[0];
+
+      //shift all data over
       for(let i = 0; i < this.length + 1; i++) {
         this.data[i] = this.data[i+1];
       }
@@ -59,7 +58,6 @@ class DynamicArray {
 
   unshift(val) {
 
-    // Your code here
     if(this.length === this.capacity) this.resize();
     if(this.data[this.data.length -1] === undefined) {
       for(let i = this.data.length - 2; i >= 0; i--){
@@ -77,7 +75,6 @@ class DynamicArray {
 
   indexOf(val) {
 
-    // Your code here
     for(let i = 0; i < this.length; i++) {
       if(this.data[i] === val) return i;
     }
@@ -86,7 +83,6 @@ class DynamicArray {
 
   resize() {
 
-    // Your code here
     const newArray = new Array(this.capacity * 2)
     this.capacity *= 2;
     for(let i = 0; i < this.data.length; i++) {
