@@ -17,3 +17,5 @@ To use the program, simply include the dynamic-array.js file in your project.
 ## Usage
 
 To create a dynamic array, use the following code:
+
+`const myArray = new DynamicArray();`
